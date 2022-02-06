@@ -9,12 +9,12 @@ public enum AccountRequiredFieldName {
 
     private final String field_name;
 
-    AccountRequiredFieldName(String field_name) {
-        this.field_name = field_name;
+    AccountRequiredFieldName(String fieldName) {
+        this.field_name = fieldName;
 
     }
 
-    public String getField_name() {
+    public String getFieldName() {
         return field_name;
     }
 

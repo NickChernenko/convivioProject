@@ -1,25 +1,23 @@
 package pages;
 
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 
 public class HomePage extends BasePage {
 
-    public MobileElement synchronization_tab = $(By.xpath("//XCUIElementTypeStaticText[@name='СИНХ']"));
-    public MobileElement accountsTab = $(By.xpath("//XCUIElementTypeStaticText[@name='ACCOUNTS(EU)']"));
-    public MobileElement personalAccountName = $(By.xpath("//XCUIElementTypeTextView[@value='Testing_CT4']"));
 
-    public HomePage performSynchronization() {
-        synchronization_tab.click();
-        return this;
+    public By accountsTab = MobileBy.xpath("//XCUIElementTypeStaticText[@name='ACCOUNTS(EU)']");
+    public By synchronizationProgressBar = MobileBy.iOSClassChain("**/XCUIElementTypeOther[$label == 'Не сворачивайте приложение и не выключайте екран'$][-1]");
+    public By synchronizationTab = MobileBy.iOSClassChain("**/XCUIElementTypeStaticText[`label == 'СИНХ'`]");
+
+    public void performSynchronization() {
+        $(synchronizationTab).click();
+
     }
-
     public HomePage openAccountTab() {
-        accountsTab.click();
+        $(accountsTab).click();
         return this;
     }
 
-    public String getAccountName() {
-        return personalAccountName.getText();
-    }
+
 }

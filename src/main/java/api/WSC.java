@@ -7,14 +7,15 @@ import com.sforce.ws.ConnectorConfig;
 import parameters.LoginParameters;
 
 public class WSC {
-  public static  PartnerConnection connection;
+    public static PartnerConnection connection;
 
-    private static PartnerConnection createConnection() {
+    public static PartnerConnection createConnection() {
 
         ConnectorConfig config = new ConnectorConfig();
         config.setUsername(LoginParameters.USERNAME.getValue());
         config.setPassword(LoginParameters.PASSWORD.getValue());
         config.setAuthEndpoint(LoginParameters.AUTHENDPOINT.getValue());
+
         try {
             return Connector.newConnection(config);
         } catch (ConnectionException e) {

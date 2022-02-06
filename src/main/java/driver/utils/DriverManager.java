@@ -34,7 +34,7 @@ public class DriverManager {
         try {
 
             driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

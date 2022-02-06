@@ -3,7 +3,7 @@ package api;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 
-public class APIOperations {
+public class APIOperations{
 
 
     public static void createSObject(SObject account) {
