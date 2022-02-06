@@ -1,8 +1,13 @@
 import api.APIOperations;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
+import data.utils.DataGenerator;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LeftMenu;
 import parameters.AccountRequiredFieldName;
+
+
 
 
 public class AccountTests extends BaseTest {
@@ -14,12 +19,19 @@ public class AccountTests extends BaseTest {
 
         SObject account = new SObject();
         APIOperations.createSObject(account);
+
+        String accountName = DataGenerator.generateAccountName();
         account.setType(AccountRequiredFieldName.TYPE.getFieldName());
-        account.setField(AccountRequiredFieldName.NAME.getFieldName(), "Random Acc");
+        account.setField(AccountRequiredFieldName.NAME.getFieldName(), accountName);
         account.setField(AccountRequiredFieldName.STATUS.getFieldName(), "New customer");
         account.setField(AccountRequiredFieldName.POSTAL_CODE.getFieldName(), "88888");
         account.setField(AccountRequiredFieldName.VISIT_FREQUENCY.getFieldName(), "Personal frequency");
 
+        HomePage homePage = new HomePage();
+        homePage.performSynchronization();
+
+        LeftMenu leftMenu = new LeftMenu();
+        leftMenu.openAccountTab();
 
     }
    /* @Test
