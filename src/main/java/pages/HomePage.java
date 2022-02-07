@@ -1,25 +1,31 @@
 package pages;
 
+import driver.utils.DriverManager;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
-    public IOSDriver driver;
 
 
-    public By synchronizationProgressBar = MobileBy.iOSClassChain("**/XCUIElementTypeOther[$label == 'Не сворачивайте приложение и не выключайте екран'$][-1]");
-    public By synchronizationTab = MobileBy.iOSClassChain("**/XCUIElementTypeStaticText[`label == 'СИНХ'`]");
+    //public By synchronizationProgressBar = MobileBy.iOSClassChain("**/XCUIElementTypeOther[$label == 'Не сворачивайте приложение и не выключайте екран'$][-1]");
+    public By synchronizationProgressBar = MobileBy.iOSClassChain("**/XCUIElementTypeStaticText[`label == 'Не сворачивайте приложение и не выключайте экран'`]");
+    public By synchronizationTab = MobileBy.iOSClassChain("**/XCUIElementTypeButton[`label == 'СИНХ'`]");
 
     public void performSynchronization() {
-        WebDriverWait wait = new WebDriverWait(driver, 90);
         $(synchronizationTab).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(synchronizationProgressBar)).isEnabled();
+
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 90);
+        boolean synchronization = wait.until(ExpectedConditions.invisibilityOfElementLocated(synchronizationProgressBar));
+        if (synchronization) {
+            System.out.println("Synchronization completed");
+        } else {
+            System.out.println("Synchronization error");
+        }
     }
 
-    }
+}
 
 
 
