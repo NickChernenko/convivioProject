@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
     public void performSynchronization() {
         $(synchronizationTab).click();
 
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 90);
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), 200);
         boolean synchronization = wait.until(ExpectedConditions.invisibilityOfElementLocated(synchronizationProgressBar));
         if (synchronization) {
             System.out.println("Synchronization completed");
